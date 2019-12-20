@@ -4,25 +4,14 @@ from typing import List
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         if not strs:
-            return ""
+            return''
         strs.sort()
-        prefix = strs[0]
-        long_prefix = ""
-        for i in strs:
-            k = 0
-            for j in i:
-                try:
-                    if j == prefix[k]:
-                        long_prefix += j
-                        k += 1
-                    else:
-                        break
-                except:
-                    return long_prefix
-            prefix = long_prefix
-            long_prefix = ""
+        for i,(a,b) in enumerate(zip(strs[0], strs[-1])):
+            if a != b:
+                return strs[0][:i]
 
-        return prefix
+        return strs[0] # if it goes through the loop the last and first word are the same up
+                        # to the length of the first word
 
 
 sol = Solution()
